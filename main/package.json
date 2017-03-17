@@ -1,0 +1,11 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "testing the other testpackage",
+  "main": "index.js",
+  "scripts": {
+    "test": "console.log(\"worked\");"
+  },
+  "author": "Brendan Smith",
+  "license": "MIT"
+}
