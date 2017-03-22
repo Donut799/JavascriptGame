@@ -1,4 +1,5 @@
 "use strict"
+//this will be used to store positions of anything.
 function Position(xPosition, yPosition) {
   this.x = xPosition;
   this.y = yPosition;
@@ -19,7 +20,7 @@ Position.prototype.moveTo = function(xPosition, yPosition, moveTo_CallBack) {
     moveTo_CallBack();
 }
 Position.prototype.toString = function() {
-  return this.x + ":" + this.y;
+  return this.x + "," + this.y;
 }
 
 exports.Position = Position;
