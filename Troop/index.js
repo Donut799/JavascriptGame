@@ -7,24 +7,30 @@ Number.isInteger = Number.isInteger || function(value) {
     Math.floor(value) === value;
 };
 
-function Troop(typeName, AI, xPosition, yPosition, ID, move_Callback) {
-	this.x = xPosition;
-	this.y = yPosition;
+function Troop(typeName, AI, defense, attack, ID, weapon, world, health) {//PUAPDO
 	this.ai = AI;
 	this.typeName = typeName;
-	this.healthLeft;
-	this.attackStrength;
-	this.defenseStrength;
-	this.attack;
+	this.health = health;//represents max health if i introduce healing
+	this.healthLeft = health;//always starts at max
+	this.defense = defense;
+	this.shieldDirection;
+	this.attack = attack;
 	this.id = ID;
-	this.move_Callback = move_Callback;
+	this.weapon = weapon;
+	this.world = world;
 }
-Troop.prototype = new Position();
-Troop.prototype.constructor = Troop;
-Troop.prototype.attack = function( /*to be determined*/ ) {
-  //TODO
+//NOTE: the world will be asked to do the attacking, moving, and manage things like this
+Troop.prototype.defend = function(isActive, direction){//direction is int 1-360
+	if(isActive){this.shieldDirection = direction;}
+	else{this.shieldDirection = null;}
 }
-Troop.prototype.safeMove = function(xTranslation, yTranslation) {
+Troop.prototype.attack = function(direction){
+	this.world.attack(this.id,direction,weapon);
+}
+Troop.prototype.attackAt = function(position){
+	this.world.attackAt(this.id,position,weapon);
+}
+Troop.prototype.safeMove = function(xTranslation, yTranslation){
 	if (Number.isInteger(xTranslation) && Number.isInteger(yTranslation)) {
 	//TODO check if move is valid
 	this.move(xTranslation, yTranslation)
@@ -35,12 +41,15 @@ Troop.prototype.safeMove = function(xTranslation, yTranslation) {
 	}
 }
 Troop.prototype.takeTurn = function() {
+	var blank = {};
+	blank.ai = this.ai;//Make sure this points to a blank object,and not a useful one.
+	blank.ai()
   //TODO
 }
-Troop.prototype.clone = function() {
+Troop.prototype.clone = function(){
   var clonedTroop = new Troop()
   clonedTroop.typeName = this.typeName;
-  clonedTroop.AI = this.AI;
+  clonedTroop.ai = this.ai;
   clonedTroop.position = (this.position.clone || function(value) {
     return value
   })(this.position);
