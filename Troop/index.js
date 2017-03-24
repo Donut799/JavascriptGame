@@ -7,7 +7,7 @@ Number.isInteger = Number.isInteger || function(value) {
     Math.floor(value) === value;
 };
 
-function Troop(isGround, typeName, AI, defense, attack, ID, weapon, world, health) {//PUAPDO
+function Troop(isGround, typeName, AI, defense, attack, ID, weapon, world, health, userName) {//PUAPDO
 	this.isGround = isGround;
 	this.ai = AI;
 	this.typeName = typeName;
