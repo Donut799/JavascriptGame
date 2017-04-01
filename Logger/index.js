@@ -22,5 +22,7 @@ Logger.prototype.newMessages = function(){
 	this.viewedIndex = this.textArray.length - 1;//we have now viewed more messages, so update the index
 	return returnString;
 }
-
+Logger.prototype.hasNew = function(){
+	return (textArray.length > (viewedIndex + 1))
+}
 exports.Logger = Logger();
