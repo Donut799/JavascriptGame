@@ -1,0 +1,14 @@
+{
+  "name": "Logger",
+  "version": "1.0.0",
+  "description": "An object that can be used to log different problems, or log other information, and to communicate to other users.",
+  "main": "index.js",
+  "scripts": {
+    "test": "console.log(\"Logger Sucessful\");"
+  },
+  "keywords": [
+    "Logger"
+  ],
+  "author": "Brendan Smith",
+  "license": "MIT"
+}

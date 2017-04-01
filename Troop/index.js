@@ -7,9 +7,11 @@ Number.isInteger = Number.isInteger || function(value) {
     Math.floor(value) === value;
 };
 
-function Troop(isGround, typeName, AI, defense, attack, ID, weapon, world, health, userName) {//PUAPDO
+function Troop(isGround, typeName,PUAPDO, AIString, defense, attack, ID, weapon, world, health, userName, logger, chat) {//PUAPDO
+	this.logger = logger;
+	this.chat = chat;
 	this.isGround = isGround;
-	this.ai = AI;
+	this.ai = new Function("troopClone,worldClone,log,chat,PUAPDO,move,moveTo,attack,defend,coordIsValid,actionExceedsLimit,input",AIString);
 	this.typeName = typeName;
 	this.health = health;//represents max health if i introduce healing
 	this.healthLeft = health;//always starts at max
@@ -19,6 +21,7 @@ function Troop(isGround, typeName, AI, defense, attack, ID, weapon, world, healt
 	this.id = ID;
 	this.weapon = weapon;
 	this.world = world;
+	this.PUAPDO = PUAPDO;
 }
 //NOTE: the world will be asked to do the attacking, moving, and manage things like this
 //TODO Figure out all necessary actions.
@@ -39,12 +42,16 @@ Troop.prototype.safeMove = function(xTranslation, yTranslation){
 		throw new Error("Error. safeMove was not given integers as parameters");
 	}
 }
+Troop.prototype.safeLog = function(string){
+	//TODO
+}
+Troop.prototype.safeChat = function(string){
+	//TODO
+}
 Troop.prototype.takeTurn = function(userInput) {
 	var blank = {};
 	blank.ai = this.ai;//Make sure "this" points to a blank object, and not a useful one.
-	//TODO WORK ON FUNCTION CONSTRUCTOR FIRST!!!
-	//blank.ai(this.clone(),)
-    //TODO
+	blank.ai(this.clone(),this.world.clone(),safeLog,safeChat,this.PUAPDO,safeMove,safeMoveTo,safeAttack,defend,coordIsValid,actionExceedsLimit,userInput)
 }
 Troop.prototype.clone = function(world){//World is not required used if you don't want it to clone the world (avoid circular references)
   var clonedTroop = new Troop()
@@ -58,4 +65,5 @@ Troop.prototype.clone = function(world){//World is not required used if you don'
 Troop.prototype.toString = function(){
 	return this.typeName + " is at " + this.x + "," + this.y//+ this.x + "," + this.y;
 }
+
 exports.Troop = Troop;
