@@ -23,7 +23,7 @@ TwoDArray.prototype.fill = function(fillObject) {
   }
 }
 TwoDArray.prototype.clone = function() {//maybe create ability to have exclusions. . .
-  var cloned = new TwoDArray(this.xLength, this.yLength)
+  /*var cloned = new TwoDArray(this.xLength, this.yLength)
   for (var x = 0; x < this.xLength; x++) {
     for (var y = 0; y < this.yLength; y++) {
       cloned[x][y] = (this[x][y].clone || function(value) {
@@ -31,7 +31,8 @@ TwoDArray.prototype.clone = function() {//maybe create ability to have exclusion
       })(this[x][y]);
     }
   }
-  return cloned
+  return cloned */ //TODO
+  return this;
 }
 TwoDArray.prototype.toString = function() {
   var arrayAsString = "";

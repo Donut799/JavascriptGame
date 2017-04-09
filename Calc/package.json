@@ -1,0 +1,14 @@
+{
+  "name": "troop",
+  "version": "1.0.0",
+  "description": "will store troop related information, and maintain functions pertaining to troop actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "console.log(\"Troop Sucessful\");"
+  },
+  "keywords": [
+    "troop"
+  ],
+  "author": "Brendan Smith",
+  "license": "MIT"
+}
