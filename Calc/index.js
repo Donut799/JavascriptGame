@@ -17,4 +17,11 @@ Calc.prototype.absValue = function(value){
 	if(value >= 0){return value}
 	else{return -value}
 }
+Calc.prototype.angDiff = function(first,second){
+	first = this.anglizer(first);
+	second = this.anglizer(second);
+	var diff = this.absValue(first - second);
+	if(diff < 180){return diff}
+	else{return 360 - diff}
+}
 exports.Calc = Calc;
