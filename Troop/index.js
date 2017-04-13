@@ -18,6 +18,7 @@ function Troop(isGround, typeName, PUAPDO, AIString, defense, attack, ID, weapon
 	this.attack = attack;
 	this.id = ID;
 	this.weapon = weapon;
+	this.weapon.owner = this;
 	this.world = game.world;
 	this.PUAPDO = PUAPDO;
 	this.actionPoints = 0;//TODO might change this.
@@ -111,7 +112,7 @@ Troop.prototype.moveTo = function(xPosition,yPosition){
 	this.world.moveTo(this.id,xPosition,yPosition);
 }
 Troop.prototype.defend = function(isActive, direction){//direction is int 0-359
-	if(isActive){this.shieldDirection = direction;}
+	if(isActive){this.shieldDirection = Calc.anglizer(direction);}
 	else{this.shieldDirection = null;}
 }
 Troop.prototype.attack = function(direction){//direction is int 0-359
@@ -148,44 +149,4 @@ Troop.prototype.actionExceedsLimit = function(action){
 Troop.prototype.toString = function(){
 	return this.typeName + " is at " + this.x + "," + this.y//+ this.x + "," + this.y;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//exports.Troop = Troop;
+exports.Troop = Troop;

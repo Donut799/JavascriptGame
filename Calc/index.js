@@ -8,6 +8,13 @@ Calc.prototype.anglizer = function(angle){
 	if(angle < 0){angle = 360 + angle}
 	return angle;
 }
-
-
+Calc.prototype.mod = function(number,modulus){
+	var temp = number % modulus;
+	if(temp >= 0){return temp}
+	else{return this.absValue(modulus) - this.absValue(temp)}
+}
+Calc.prototype.absValue = function(value){
+	if(value >= 0){return value}
+	else{return -value}
+}
 exports.Calc = Calc;
