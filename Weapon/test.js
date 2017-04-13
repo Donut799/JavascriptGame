@@ -11,10 +11,13 @@ Weapon.prototype.deviate = function(angle){
 	if(Math.random() * 100 < this.deviationChance){
 		var tempMaxDeviation = this.maxDeviation
 		//if the attack occurs in the same direction as the shield deviation should increase by 2x the proportion of the angle of the attack to the angle of the shield.
-		if()
+		var angDiff = this.Calc.angDiff(this.angle,this.owner.shieldDirection)
+		if(angDiff < 90){
+			tempMaxDeviation = tempMaxDeviation * (((90 - angDiff) / 90) + 1)
+		}
 		
 		
-		angle = Calc.anglizer(angle + (this.maxDeviation * 2 * (Math.random() - .5)));
+		angle = Calc.anglizer(angle + (tempMaxDeviation * 2 * (Math.random() - .5)));
 	}
 	return angle;
 }
