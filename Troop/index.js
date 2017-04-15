@@ -10,6 +10,7 @@ Number.isInteger = Number.isInteger || function(value) {
 };
 function Troop(isGround, typeName, PUAPDO, AIString, defense, attack, ID, weapon, game, health, userName, logger, chat) {
 	this.game = game;
+	this.typeName = typeName;
 	this.logger = logger;
 	this.chat = chat;
 	this.isGround = isGround;
@@ -20,7 +21,7 @@ function Troop(isGround, typeName, PUAPDO, AIString, defense, attack, ID, weapon
 	this.weapon = weapon;
 	this.weapon.owner = this;
 	this.world = game.world;
-	this.PUAPDO = PUAPDO;
+	this.PUAPDO = PUAPDO;//Persistent User Accessible Player Dependant Object
 	this.actionPoints = 0;//TODO might change this.
 	this.safeLog = function(string){
 		if(typeof string === "string"){
