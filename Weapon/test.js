@@ -1,11 +1,18 @@
 "use strict"
 Var Calc = require("calc").Calc;
-function Weapon(damage,range,maxDeviation,deviationChance){
+function Weapon(damage,range,maxDeviation,deviationChance,critChance){
 	this.damage = damage;
 	this.range = range;
 	this.maxDeviation = maxDeviation;
 	this.deviationChance = deviationChance;
 	this.owner = null;
+	if(critChance){this.critChance = critChance;}
+	else{this.critChance = 0;}
+}
+Weapon.prototype.damageDealt = function(critChance){//if there is a critChance specified use that instead.
+	if(!critChance){critChance = this.critChance;}
+	if(Math.random() * 100 < critChance){return this.damage * 2;}
+	else{return this.damage;}
 }
 Weapon.prototype.deviate = function(angle){
 	if(Math.random() * 100 < this.deviationChance){

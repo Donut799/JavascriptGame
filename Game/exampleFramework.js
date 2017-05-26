@@ -46,17 +46,7 @@ Player.prototype.removeTroop = function(troop) {
 
 
 
-function World(width, height) {
-  this.map = new TwoDArray(width, height);
-}
-World.prototype.toString = function() {
-  return map.toString();
-}
-World.prototype.clone = function() {
-  var tempWorld = new World(this.map.xLength, this.map.yLength);
-  tempWorld.map = this.map.clone();
-  return tempWorld;
-}
+
 
 
 //function Troop(typeName, AI, position, ID) {

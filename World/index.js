@@ -1,5 +1,7 @@
 "use strict"
 var Position = require("..\Position\index.js").Position;
+var Calc = require().Calc;
+var Calc = new Calc();
 function World(width, height) {
   this.map = new TwoDArray(width, height);
   this.troops = [];
@@ -47,6 +49,39 @@ World.prototype.moveTo = function(id,x,y){
 	var position = this.positions[id];
 	this.map[x][y] = this.map[position.x][position.y];
 	this.map[position.x][position.y] = null;
+}
+World.prototype.attack = function(id,angle,weapon){
+	var damage = weapon.damageDealt();
+	var direction = weapon.deviate(angle);
+	var troop = this.troops[id];
+var startPosition = this.positions[id];
+
+World.prototype.placesPassedThrough = function(startPosition,angle,maxDistance){//TODO
+	angle = Calc.anglizer(angle);
+	var coordsPassedThrough = [];
+	var currentPosition = new Position(startPosition.x,startPosition.y);//since clone isn't currently working (on purpose).
+	var distanceTraveled = 0;
+	var xIsIncreasing = ( angle >= 0 && angle < 90 ) || ( angle > 270 && angle < /*equals already accounted for*/ 360)//if false this does not mean that x is decreasing it 
+	var yIsIncreasing = angle > 0 && angle < 180;//if false this does not mean that y is decreasing it 
+	do{
+		
+		//travel to next whole number X position
+		if(xIsIncreasing){
+			var nextWholeX = Math.floor(currentPosition.x) + 1;
+		}else if(angle = 90 || angle = 270){
+			var nextWholeX = Number.MAX_VALUE;
+		}else{
+			var nextWholeX = Math.ceil(currentPosition.x - 1);
+		}
+		distanceForX = Math.abs(nextWholeX - currentPosition.x) / (Math.cos(angle))
+		//travel to next whole number Y position
+		
+		
+	}while(distanceTraveled < maxDistance)
+	return coordsPassedThrough;
+}
+World.prototype.attackAt = function(id,x,y,weapon){
+	this.attack(id,Math.atan(y/x),weapon);
 }
 World.prototype.clone = function(Troop) {
   /*var tempWorld = new World(this.map.xLength, this.map.yLength);
